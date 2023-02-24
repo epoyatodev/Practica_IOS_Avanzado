@@ -10,7 +10,7 @@ import UIKit
 class HeroesListTableViewController: UIViewController {
     
     var mainView:  HeroesListTableView { self.view as! HeroesListTableView }
-    var heroesListCoreData: [Hero] = []
+    var heroesListCoreDataFiltered: [Hero] = []
     var heroesList: [HeroModel] = []
     
     private var tableViewDataSource: HeroesListTableViewDataSource?
@@ -25,12 +25,19 @@ class HeroesListTableViewController: UIViewController {
     
     override func loadView() {
         view = HeroesListTableView()
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(logout(_:)))
         mainView.logout.addGestureRecognizer(gestureTap)
+        
+        mainView.deleteCoreDataButtom.addTarget(self, action: #selector(deleteCoreData), for: .touchUpInside)
+        
+        
+        
         setTableElements()
         setDidTapOnCell()
         addNotification()
@@ -42,10 +49,7 @@ class HeroesListTableViewController: UIViewController {
         }
         
         getFullHeroeApiClient()
-        
-        
-        
-        
+
         
     }
     
@@ -83,11 +87,17 @@ class HeroesListTableViewController: UIViewController {
     
     private func getFullHeroeApiClient() {
         if getHeroesCoreData().isEmpty {
+            mainView.circuloCarga.startAnimating()
+
             print("Heroes ApiClient")
             let moveToMain = { (heroes: [HeroModel]) -> Void in
                 heroes.forEach { saveHeroeCoreData($0.id, $0.photo, $0.name, $0.description, String($0.longitud!), String($0.latitud!)) } // Guardo en coreData el Heroe + Localizaciones
-                
+                self.heroesListCoreDataFiltered = getHeroesCoreData()
+
                 self.tableViewDataSource?.set(heroes: getHeroesCoreData())
+
+                
+                self.mainView.circuloCarga.stopAnimating()
             }
             
             let updateFullItems = { (heroes: [HeroModel]) -> Void in
@@ -128,6 +138,9 @@ class HeroesListTableViewController: UIViewController {
         }else{
             print("HeroesCoreData")
             tableViewDataSource?.set(heroes: getHeroesCoreData())
+
+            //tableViewDataSource?.set(heroes: heroesListCoreDataFiltered)
+
         }
         
     }
@@ -140,6 +153,7 @@ class HeroesListTableViewController: UIViewController {
     func setTableElements(){
         tableVideDelegate = HeroesListTableViewDelegate()
         tableViewDataSource = HeroesListTableViewDataSource(tableView: mainView.tableView)
+        mainView.searchBar.delegate = self
         mainView.tableView.dataSource = tableViewDataSource
         mainView.tableView.delegate = tableVideDelegate
     }
@@ -164,8 +178,14 @@ class HeroesListTableViewController: UIViewController {
     func logout(_ gestureTap: UITapGestureRecognizer) {
         deleteTokenKeychain(getEmail())
         presentLoginViewController()
-        //deleteHeroesCoreData()
         
+        
+    }
+    
+    @objc
+    func deleteCoreData(){
+        deleteHeroesCoreData()
+        self.mainView.tableView.reloadData()
     }
     
     @objc
@@ -186,6 +206,30 @@ class HeroesListTableViewController: UIViewController {
     }
     
     
+}
+
+// MARK: - Extension
+
+extension HeroesListTableViewController: UISearchBarDelegate{
+    // Identificar cuando el usuario comienza a escribir
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        heroesListCoreDataFiltered = []
+        
+        if searchText == "" {
+            heroesListCoreDataFiltered = getHeroesCoreData()
+        }else{
+            for heroe in getHeroesCoreData(){
+                if heroe.name.lowercased().contains(searchText.lowercased()){
+                    heroesListCoreDataFiltered.append(heroe)
+                }
+            }
+        }
+        // Cada vez que cambio el texto se va actualizando la tabla
+        DispatchQueue.main.async {
+            self.tableViewDataSource?.set(heroes: self.heroesListCoreDataFiltered)
+
+        }
+    }
 }
 
 

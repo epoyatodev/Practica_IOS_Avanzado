@@ -12,6 +12,8 @@ class HeroDetailView: UIView {
     
     let heroeImageVIew: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = imageView.frame.size.width / 2
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
