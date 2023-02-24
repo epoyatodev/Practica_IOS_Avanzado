@@ -3,3 +3,4 @@ Practica realizada en el Módulo de IOS Avanzado, en la que recibo datos de la a
 
 - La aplicacion muestra Pantalla de Login
 
+<image src="/images/picture.jpg" alt="Descripción de la imagen">
