@@ -30,7 +30,8 @@ class HeroesListTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createRefreshControll()
+
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(logout(_:)))
         mainView.logout.addGestureRecognizer(gestureTap)
         
@@ -84,6 +85,14 @@ class HeroesListTableViewController: UIViewController {
     }
     
     
+    func createRefreshControll(){
+        let refreshControl = UIRefreshControl()
+           refreshControl.addTarget(self, action: #selector(refreshToShowHeroesAfterDeleteCoreData), for: .valueChanged)
+           
+           // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
+        mainView.tableView.refreshControl = refreshControl
+    }
+    
     
     private func getFullHeroeApiClient() {
         if getHeroesCoreData().isEmpty {
@@ -92,7 +101,6 @@ class HeroesListTableViewController: UIViewController {
             print("Heroes ApiClient")
             let moveToMain = { (heroes: [HeroModel]) -> Void in
                 heroes.forEach { saveHeroeCoreData($0.id, $0.photo, $0.name, $0.description, String($0.longitud!), String($0.latitud!)) } // Guardo en coreData el Heroe + Localizaciones
-                self.heroesListCoreDataFiltered = getHeroesCoreData()
 
                 self.tableViewDataSource?.set(heroes: getHeroesCoreData())
 
@@ -103,7 +111,7 @@ class HeroesListTableViewController: UIViewController {
             let updateFullItems = { (heroes: [HeroModel]) -> Void in
                 
                 let group = DispatchGroup()
-                
+                self.heroesList = []
                 for hero in heroes {
                     group.enter()
                     
@@ -134,7 +142,10 @@ class HeroesListTableViewController: UIViewController {
 
                 updateFullItems(heroes)
             }
-            self.heroeListViewModel.getData()
+            
+                self.heroeListViewModel.getData()
+
+                return
         }else{
             print("HeroesCoreData")
             tableViewDataSource?.set(heroes: getHeroesCoreData())
@@ -174,6 +185,13 @@ class HeroesListTableViewController: UIViewController {
     
     // MARK: Objc Func
     
+    
+    @objc
+    func refreshToShowHeroesAfterDeleteCoreData(refreshControl: UIRefreshControl){
+        getFullHeroeApiClient()
+        refreshControl.endRefreshing()
+    }
+    
     @objc
     func logout(_ gestureTap: UITapGestureRecognizer) {
         deleteTokenKeychain(getEmail())
@@ -185,7 +203,10 @@ class HeroesListTableViewController: UIViewController {
     @objc
     func deleteCoreData(){
         deleteHeroesCoreData()
-        self.mainView.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.mainView.tableView.reloadData()
+        }
+
     }
     
     @objc
@@ -199,6 +220,9 @@ class HeroesListTableViewController: UIViewController {
                 // oculto el formulario de login
                 DispatchQueue.main.async {
                     self.loginViewController?.dismiss(animated: true)
+                    if getHeroesCoreData().isEmpty{
+                        
+                    }
                     self.getFullHeroeApiClient()
                 }
             }
