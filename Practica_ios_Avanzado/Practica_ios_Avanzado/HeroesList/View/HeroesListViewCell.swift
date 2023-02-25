@@ -63,6 +63,9 @@ class HeroeListViewCell: UITableViewCell {
         ])
     }
     
+    
+    // MARK: - Configure
+    
     func configure(_ model: Hero) {
         self.heroeName.text = model.name
         self.heroeDescription.text = model.heroeDescription

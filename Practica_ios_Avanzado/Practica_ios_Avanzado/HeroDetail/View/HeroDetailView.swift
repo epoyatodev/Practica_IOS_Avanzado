@@ -80,6 +80,8 @@ class HeroDetailView: UIView {
         ])
     }
     
+     // MARK: - Configure
+    
     func configure(_ model: Hero) {
         self.heroeName.text = model.name
         self.heroeDescription.text = model.heroeDescription

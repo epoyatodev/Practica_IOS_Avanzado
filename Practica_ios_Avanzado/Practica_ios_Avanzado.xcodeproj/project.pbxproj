@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3A4B8F4829A9280C00AEE535 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 3A4B8F4729A9280C00AEE535 /* Kingfisher */; };
-		3A4B8F4B29A9347400AEE535 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A4B8F4A29A9347400AEE535 /* Security.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3A61DE8E299B834D0069D6C2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A61DE8D299B834D0069D6C2 /* AppDelegate.swift */; };
 		3A61DE90299B834D0069D6C2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A61DE8F299B834D0069D6C2 /* SceneDelegate.swift */; };
-		3A61DE92299B834D0069D6C2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A61DE91299B834D0069D6C2 /* ViewController.swift */; };
 		3A61DE95299B834D0069D6C2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A61DE93299B834D0069D6C2 /* Main.storyboard */; };
 		3A61DE97299B834D0069D6C2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A61DE96299B834D0069D6C2 /* Assets.xcassets */; };
 		3A61DE9A299B834D0069D6C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A61DE98299B834D0069D6C2 /* LaunchScreen.storyboard */; };
@@ -47,11 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3A4B8F4A29A9347400AEE535 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3A61DE8A299B834D0069D6C2 /* Practica_ios_Avanzado.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Practica_ios_Avanzado.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A61DE8D299B834D0069D6C2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A61DE8F299B834D0069D6C2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3A61DE91299B834D0069D6C2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A61DE94299B834D0069D6C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A61DE96299B834D0069D6C2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A61DE99299B834D0069D6C2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -92,7 +88,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A4B8F4B29A9347400AEE535 /* Security.framework in Frameworks */,
 				3A4B8F4829A9280C00AEE535 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -100,20 +95,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3A4B8F4929A9347400AEE535 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3A4B8F4A29A9347400AEE535 /* Security.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		3A61DE81299B834D0069D6C2 = {
 			isa = PBXGroup;
 			children = (
 				3A61DE8C299B834D0069D6C2 /* Practica_ios_Avanzado */,
 				3A61DE8B299B834D0069D6C2 /* Products */,
-				3A4B8F4929A9347400AEE535 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -247,7 +233,6 @@
 			children = (
 				3A61DE8D299B834D0069D6C2 /* AppDelegate.swift */,
 				3A61DE8F299B834D0069D6C2 /* SceneDelegate.swift */,
-				3A61DE91299B834D0069D6C2 /* ViewController.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -449,7 +434,6 @@
 				3A61DEBC299B949F0069D6C2 /* Constants.swift in Sources */,
 				3A61DEAC299B89D40069D6C2 /* HeroesListViewModel.swift in Sources */,
 				3AB74F8E299BA63D00525405 /* HeroesListDelegate.swift in Sources */,
-				3A61DE92299B834D0069D6C2 /* ViewController.swift in Sources */,
 				3A61DEB6299B8BC20069D6C2 /* LoginView.swift in Sources */,
 				3A61DEA8299B844F0069D6C2 /* HeroesListTableView.swift in Sources */,
 				3AB74FA9299BC23E00525405 /* HeroesMapView.swift in Sources */,

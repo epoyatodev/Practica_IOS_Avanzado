@@ -13,9 +13,6 @@ class HomeTabBarController: UITabBarController {
         super.viewDidLoad()
         setupLayout()
         setupTabs()
-        
-            
-
 
     }
     

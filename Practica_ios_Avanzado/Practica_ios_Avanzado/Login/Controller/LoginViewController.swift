@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
     var errorMessage: UILabel?
     
     var viewModel: LoginViewModel?
-    
     var user: [User] = []
     
     override func loadView() {
@@ -43,6 +42,7 @@ class LoginViewController: UIViewController {
         viewModel = LoginViewModel()
         
         loginButton?.addTarget(self, action: #selector(didLoginTapped), for: .touchUpInside)
+        
         #if DEBUG
 
         emailTextField?.text = "enripoor@hotmail.es"
@@ -50,9 +50,10 @@ class LoginViewController: UIViewController {
 
         #endif
         
-        //user = getEmployees()
         
     }
+    
+    // MARK: - Objc Func
     
     @objc
     func didLoginTapped(sender: UIButton){
@@ -95,11 +96,4 @@ class LoginViewController: UIViewController {
 
     }
     
-    private func loginAndSaveTokenInKeychain(){
-        
-        
-    
 
-    
-
-}

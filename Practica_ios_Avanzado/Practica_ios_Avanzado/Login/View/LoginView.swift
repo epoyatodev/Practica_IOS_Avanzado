@@ -115,6 +115,8 @@ class LoginView: UIView {
         ])
     }
     
+    // MARK: - Getters
+    
     func getEmailView() -> UITextField {
         return emailTextField
     }

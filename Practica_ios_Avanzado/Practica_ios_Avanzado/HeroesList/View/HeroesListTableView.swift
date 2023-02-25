@@ -127,10 +127,7 @@ class HeroesListTableView: UIView {
         ])
     }
     
-    func getLougoutButton() -> UIImageView {
-        
-        return logout
-    }
+
 }
 
 

@@ -20,7 +20,6 @@ var updateHeroe: HandlerHeroe?
 // MARK: CoreData
 
 func saveHeroeCoreData(_ id: String, _ photo: String, _ name: String, _ heroeDescription: String, _ longitud: String, _ latitud: String) {
-    // Guardo la info en CoreData
     
     
     let heroe = Hero(context: contextHeroes)
@@ -55,15 +54,6 @@ func getHeroesCoreData() -> [Hero] {
     }
 }
 
-func updateHeroesCoreData(_ longitud: String, _ latitud: String) {
-   
-    
-    guard let currentHeroe  else { return }
-    
-    currentHeroe.longitud = longitud
-    currentHeroe.latitud = latitud
-    updateHeroe?(currentHeroe)
-}
 
 func deleteHeroesCoreData() {
     // Obtener los objetos de la entidad que deseas eliminar
@@ -102,6 +92,7 @@ func getEmail() -> String {
         return ""
     }
 }
+
 
 func saveEmail(_ email: String) {
     // Guardo la info en CoreData
@@ -154,7 +145,7 @@ func saveDataKeychain(_ token: String, _ email: String) {
 
 func readDataKeychain(_ email: String) -> String {
     var tokenUser = ""
-    // Establecer el usuaio que queremos encontrar
+    // Establecer el usuario que queremos encontrar
     let userName = email
     // Preparamos la consulta
     let query: [String: Any] = [
@@ -173,13 +164,11 @@ func readDataKeychain(_ email: String) -> String {
     if SecItemCopyMatching(query as CFDictionary, &item) == noErr {
         // extraemos la informacion
         if let item = item as? [String: Any],
-           //let username = item[kSecAttrAccount as String] as? String,
            let tokenData = item[kSecValueData as String] as? Data,
            let token = String(data: tokenData, encoding: .utf8) {
             
             //debugPrint("Usuario recuperado -> \(username) - \(token)")
-            
-            
+
             tokenUser = token
             
         }

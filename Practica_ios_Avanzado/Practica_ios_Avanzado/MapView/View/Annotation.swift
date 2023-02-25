@@ -17,8 +17,7 @@ class Annotation: NSObject, MKAnnotation {
     
     init(place: Hero) {
         coordinate = CLLocationCoordinate2D(latitude: Double(place.latitud)!, longitude: Double(place.longitud)!)
-        
-        
+                
         name = place.name
         photo = place.photo
         

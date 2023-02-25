@@ -38,12 +38,10 @@ class HeroesMapViewController: UIViewController{
         
     }
     
-    
 
     
     private func getData() {
 
-        
         self.location = getHeroesCoreData()
         self.createAnotation(location)
     }
@@ -59,19 +57,20 @@ class HeroesMapViewController: UIViewController{
     
 }
 
+
+
+
+// MARK: - Extensions
+
 extension HeroesMapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         
         let id = MKMapViewDefaultAnnotationViewReuseIdentifier
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: id)
-        
-        
-        if let annotation = annotation as? Annotation {
-            
 
-            
-            
+        if let annotation = annotation as? Annotation {
+
             annotationView?.canShowCallout = true
             annotationView?.detailCalloutAccessoryView = Callout(annotation: annotation)
             
@@ -83,8 +82,6 @@ extension HeroesMapViewController: MKMapViewDelegate {
     
 }
 
-
-// MARK: Extensions
 extension HeroesMapViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

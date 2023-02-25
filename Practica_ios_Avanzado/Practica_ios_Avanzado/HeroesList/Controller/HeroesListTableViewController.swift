@@ -32,33 +32,32 @@ class HeroesListTableViewController: UIViewController {
         super.viewDidLoad()
         createRefreshControll()
 
+        // Targets and Gestures
+        
         let gestureTap = UITapGestureRecognizer(target: self, action: #selector(logout(_:)))
         mainView.logout.addGestureRecognizer(gestureTap)
-        
         mainView.deleteCoreDataButtom.addTarget(self, action: #selector(deleteCoreData), for: .touchUpInside)
         
-        
-        
+
         setTableElements()
         setDidTapOnCell()
         addNotification()
+        
         // Check if user is logged in
         if readDataKeychain(getEmail()) == "" {
             
             presentLoginViewController()
             return
         }
-        
         getFullHeroeApiClient()
-
-        
+ 
     }
     
     
-    // MARK: Actions
+    // MARK: - Actions
     
     func presentLoginViewController() {
-        // Creo el login view controller
+        
         loginViewController = LoginViewController()
         
         // show the login view controller
@@ -89,22 +88,21 @@ class HeroesListTableViewController: UIViewController {
         let refreshControl = UIRefreshControl()
            refreshControl.addTarget(self, action: #selector(refreshToShowHeroesAfterDeleteCoreData), for: .valueChanged)
            
-           // this is the replacement of implementing: "collectionView.addSubview(refreshControl)"
         mainView.tableView.refreshControl = refreshControl
     }
     
     
     private func getFullHeroeApiClient() {
         if getHeroesCoreData().isEmpty {
+            
             mainView.circuloCarga.startAnimating()
 
-            print("Heroes ApiClient")
+            debugPrint("Request Heroes Api Client")
             let moveToMain = { (heroes: [HeroModel]) -> Void in
+                
                 heroes.forEach { saveHeroeCoreData($0.id, $0.photo, $0.name, $0.description, String($0.longitud!), String($0.latitud!)) } // Guardo en coreData el Heroe + Localizaciones
 
                 self.tableViewDataSource?.set(heroes: getHeroesCoreData())
-
-                
                 self.mainView.circuloCarga.stopAnimating()
             }
             
@@ -144,13 +142,10 @@ class HeroesListTableViewController: UIViewController {
             }
             
                 self.heroeListViewModel.getData()
-
                 return
         }else{
-            print("HeroesCoreData")
+            debugPrint("Request Heroes CoreData")
             tableViewDataSource?.set(heroes: getHeroesCoreData())
-
-            //tableViewDataSource?.set(heroes: heroesListCoreDataFiltered)
 
         }
         
@@ -159,7 +154,7 @@ class HeroesListTableViewController: UIViewController {
     
     
     
-    //MARK: Table
+    //MARK: - Table
     
     func setTableElements(){
         tableVideDelegate = HeroesListTableViewDelegate()
@@ -183,7 +178,7 @@ class HeroesListTableViewController: UIViewController {
     }
     
     
-    // MARK: Objc Func
+    // MARK: - Objc Func
     
     
     @objc

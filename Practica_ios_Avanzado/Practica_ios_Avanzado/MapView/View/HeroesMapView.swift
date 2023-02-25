@@ -13,7 +13,6 @@ class HeroesMapView: UIView {
     
     let mapView: MKMapView = {
        let map = MKMapView()
-        
         map.translatesAutoresizingMaskIntoConstraints = false
         
         return map
