@@ -2,7 +2,7 @@
 Practica realizada en el Módulo de IOS Avanzado, en la que recibo datos de la api de Dragon ball y muestro una table view con los heroes, que pueden ser filtrados con un searchBar y un mapa con sus localizaciones, además de un login de inicio. La aplicacion trabaja con CoreData y KeyChain. Explico un poco el flujo de la aplicación:
 
 - La aplicacion muestra Pantalla de Login ( si no hay token guardado en keyChain )
-- Una vez se accede con usuario y contraseña compruebo si hay datos guardados en coreData, si no los hay hago una llamada a la api y guardo en core data los datos. S i ya hay datos en core data directamente los coje de ahí
+- Una vez se accede con usuario y contraseña compruebo si hay datos guardados en coreData, si no los hay hago una llamada a la api y guardo en core data los datos. Si ya hay datos en core data directamente los coje de ahí
 
 [![IMG-5440.jpg](https://i.postimg.cc/ZKy1m81S/IMG-5440.jpg)](https://postimg.cc/zV8dSgzt) [![IMG-5441.png](https://i.postimg.cc/MGtL5djy/IMG-5441.png)](https://postimg.cc/yJgnYhjd)
 
