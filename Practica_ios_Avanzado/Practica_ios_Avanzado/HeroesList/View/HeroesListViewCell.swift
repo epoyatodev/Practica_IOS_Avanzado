@@ -13,6 +13,8 @@ class HeroeListViewCell: UITableViewCell {
     
     let heroeImageVIew: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
