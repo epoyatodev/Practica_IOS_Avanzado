@@ -7,8 +7,9 @@ Practica realizada en el Módulo de IOS Avanzado, en la que recibo datos de la a
 [![IMG-5440.jpg](https://i.postimg.cc/ZKy1m81S/IMG-5440.jpg)](https://postimg.cc/zV8dSgzt) [![IMG-5441.png](https://i.postimg.cc/MGtL5djy/IMG-5441.png)](https://postimg.cc/yJgnYhjd)
 
 - Tambien he implementado un SearchBar para filtrar los heroes segun voy escribiendo
-- Implementacion de un MapView con las localizaciones de cada uno de los heroes, añadiendo anotaciones y CallOuts
+- Implementacion de un MapView con las localizaciones de cada uno de los heroes, añadiendo anotaciones y CallOuts. Desde el callOut se puede acceder al detalle.
 
+[![IMG-5459.png](https://i.postimg.cc/SRXj7pTt/IMG-5459.png)](https://postimg.cc/hQBScNq9)
 [![IMG-5442.png](https://i.postimg.cc/zGC6bJz2/IMG-5442.png)](https://postimg.cc/DSzBR3b1)
 [![IMG-5444.png](https://i.postimg.cc/MTFF2H5H/IMG-5444.png)](https://postimg.cc/G8vQvcZn)
 
