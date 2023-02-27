@@ -13,6 +13,7 @@ class Annotation: NSObject, MKAnnotation {
     let coordinate: CLLocationCoordinate2D
     let name: String?
     let photo: String?
+    let heroeDescription: String?
  
     
     init(place: Hero) {
@@ -20,6 +21,7 @@ class Annotation: NSObject, MKAnnotation {
                 
         name = place.name
         photo = place.photo
+        heroeDescription = place.heroeDescription
         
     }
     
