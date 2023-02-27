@@ -50,11 +50,41 @@ class HeroesListTableViewController: UIViewController {
             return
         }
         getFullHeroeApiClient()
+        
+        
+      
+
  
     }
     
     
     // MARK: - Actions
+    
+    
+    func confirmLogout() {
+        // Crear una instancia del controlador de vista UIAlertController
+        let alertController = UIAlertController(title: "Cerrar Sesión", message: "¿Está seguro de que desea continuar?", preferredStyle: .alert)
+
+        // Crear un botón de acción para la opción "Sí"
+        let confirmAction = UIAlertAction(title: "Sí", style: .default) { (_) in
+            deleteTokenKeychain(getEmail())
+            self.presentLoginViewController()
+        }
+
+        // Agregar el botón de acción al controlador de vista
+        alertController.addAction(confirmAction)
+
+        // Crear un botón de acción para la opción "Cancelar"
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { (_) in
+            // Acciones a realizar si el usuario cancela
+        }
+
+        // Agregar el botón de acción al controlador de vista
+        alertController.addAction(cancelAction)
+
+        // Mostrar el controlador de vista de alerta en la pantalla
+        present(alertController, animated: true, completion: nil)
+    }
     
     func presentLoginViewController() {
         
@@ -189,9 +219,8 @@ class HeroesListTableViewController: UIViewController {
     
     @objc
     func logout(_ gestureTap: UITapGestureRecognizer) {
-        deleteTokenKeychain(getEmail())
-        presentLoginViewController()
         
+        confirmLogout()
         
     }
     
